@@ -22,4 +22,8 @@ def draw():
     ellipse(x + 80, y, 50, 50)
     fill(0,128,0)
     rect(0, height - 50, width, 50)
-    rect(x, height - 150, 3, 100)
+    rect(width/2 - 125, height - 175, 250, 125)
+    fill(255,0,0)
+    triangle(width/2 - 150, height - 175, width/2 + 150, height - 175, width/2, height - 275)
+    rect(width/2 - 25, height - 125, 50,75)
+    
