@@ -1,14 +1,18 @@
 x = 450
-
+a = 450
 def setup():
     size(640, 480)
 
 def draw():
     global x
+    global a
     print(x)
     if x >= 640:
         x = 0
+    if a >= 640:
+        a = 0
     x += 3
+    a += 6
     background(135,206,235)
     fill(255)
     noStroke()
@@ -26,4 +30,10 @@ def draw():
     fill(255,0,0)
     triangle(width/2 - 150, height - 175, width/2 + 150, height - 175, width/2, height - 275)
     rect(width/2 - 25, height - 125, 50,75)
+    fill(0,0,255)
+    rect(a - 50, height - 120, 200, 50)
+    rect(a, height - 150, 100,30)
+    fill(255,0,0)
+    ellipse(a, height - 70, 40, 40)
+    ellipse(a + 100, height - 70, 40, 40)
     
