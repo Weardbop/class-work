@@ -1,55 +1,79 @@
-x = 450
-x2 = 450
-x3 = 150
-y2 = 0
-y_diff = 3
+x_of_cloud = 450
+x_of_car = 450
+x_diff_of_cloud = 2
+x_of_sun = -50
+x_diff_of_sun = 1.45
+y_diff_of_sun = 1
+y_of_sun = 480/2
 def setup():
     size(640, 480)
 
 def draw():
-    global x
-    global x2
-    global x3
-    global y2
-    global y_diff
-    print(x)
-    if x >= 640:
-        x = 0
-    if x2 >= 640:
-        x2 = 0
-    if y2 > 430 or y2 < 0:
-        y_diff *= -1
-    y2 += y_diff
-    x += 3
-    x2 += 6
+    #animations
+    global x_of_cloud
+    global x_of_car
+    global x_diff_of_cloud
+    global x_of_sun
+    global x_diff_of_sun
+    global y_diff_of_sun
+    global y_of_sun
+    print(x_of_cloud)
+    if x_of_car >= 700:
+        x_of_car = 0
+    if x_of_cloud > 650 or x_of_cloud < 0:
+        x_diff_of_cloud = x_diff_of_cloud * -1
+    if y_of_sun < 0:
+        y_diff_of_sun *= y_diff_of_sun * -1
+    if x_of_sun > 800:
+        x_of_sun = -50
+        y_of_sun = height/2
+        y_diff_of_sun = 1
+    x_of_sun += x_diff_of_sun
+    x_of_cloud += x_diff_of_cloud
+    x_of_car += 6
+    y_of_sun -= y_diff_of_sun
     background(135,206,235)
-    fill(255)
     noStroke()
-    y = height/6
+    
+    #sun
+    fill(252, 212, 64)
+    ellipse(x_of_sun, y_of_sun, 100, 100)
+    
     #cloud
-    ellipse(x, y, 50, 50)
-    ellipse(x + 50, y, 50, 50)
-    ellipse(x + 25, y - 25, 50, 50)
-    ellipse(x + 25, y + 25, 50, 50)
-    ellipse(x + 60, y - 25, 50, 50)
-    ellipse(x + 60, y + 25, 50, 50)
-    ellipse(x + 80, y, 50, 50)
-    #house
+    fill(255)
+    y_of_cloud = height/6
+    ellipse(x_of_cloud, y_of_cloud, 50, 50)
+    ellipse(x_of_cloud + 50, y_of_cloud, 50, 50)
+    ellipse(x_of_cloud + 25, y_of_cloud - 25, 50, 50)
+    ellipse(x_of_cloud + 25, y_of_cloud + 25, 50, 50)
+    ellipse(x_of_cloud + 60, y_of_cloud - 25, 50, 50)
+    ellipse(x_of_cloud + 60, y_of_cloud + 25, 50, 50)
+    ellipse(x_of_cloud + 80, y_of_cloud, 50, 50)
+    
+    #ground
     fill(0,128,0)
     rect(0, height - 50, width, 50)
+    
+    #house
+    fill(193, 106, 12)
     rect(width/2 - 125, height - 175, 250, 125)
     fill(255,0,0)
     triangle(width/2 - 150, height - 175, width/2 + 150, height - 175, width/2, height - 275)
+    fill(255,127,80)
     rect(width/2 - 25, height - 125, 50,75)
+    
     #car
     fill(0,0,255)
-    rect(x2 - 50, height - 120, 200, 50)
-    rect(x2, height - 150, 100,30)
+    rect(x_of_car - 50, height - 120, 200, 50)
+    rect(x_of_car, height - 150, 100,30)
     fill(255,0,0)
-    ellipse(x2, height - 70, 40, 40)
-    ellipse(x2 + 100, height - 70, 40, 40)
+    ellipse(x_of_car, height - 70, 40, 40)
+    ellipse(x_of_car + 100, height - 70, 40, 40)
+    
     #flying saucer
     fill(0,255,0)
-    ellipse(x3, y2 - 20, 80, 80)
+    ellipse(mouseX, mouseY - 20, 80, 80)
     fill(128,128,128)
-    ellipse(x3, y2, 150, 60)
+    ellipse(mouseX, mouseY, 150, 60)
+
+        
